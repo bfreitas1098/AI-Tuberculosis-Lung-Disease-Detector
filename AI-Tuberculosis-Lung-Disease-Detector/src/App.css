@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap");
+
 *,
 *::before,
 *::after {
@@ -5,4 +7,20 @@
   padding: 0;
   box-sizing: border-box;
   font-size: 62.5%;
+  font-family: "Mozilla Text", sans-serif;
+  font-style: normal;
+}
+
+body {
+  background-color: #0b0f14;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0;
+  color: #e6edf3;
+  text-align: center;
+}
+
+main {
+  width: 100rem;
 }
