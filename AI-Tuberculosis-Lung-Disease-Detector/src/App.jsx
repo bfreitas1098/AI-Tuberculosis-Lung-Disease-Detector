@@ -37,7 +37,7 @@ function App() {
           <div className="img-container" style={styles.imageContainer}>
             {/* <img src={img} style={styles.image} /> */}
           </div>
-          <button style={styles.button}>Detect</button>
+          <button style={styles.mutedButton}>Detect</button>
         </div>
         <div className="result-card" style={styles[".result-card"]}>
           <div className="prediction-container" style={styles.resultContainer}>
@@ -121,6 +121,23 @@ const styles = {
 
   button: {
     backgroundColor: "var(--secondary)",
+    color: "var(--bg)",
+    fontSize: "2rem",
+    fontWeight: 600,
+    // border: "1px solid var(--text)",
+    border: "none",
+    padding: "1rem 1.5rem",
+    borderRadius: 8,
+    width: "37rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItem: "center",
+    gap: "1.5rem",
+    cursor: "pointer",
+  },
+
+  mutedButton: {
+    backgroundColor: "var(--muted)",
     color: "var(--bg)",
     fontSize: "2rem",
     fontWeight: 600,
