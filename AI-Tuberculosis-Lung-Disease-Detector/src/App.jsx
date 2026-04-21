@@ -1,5 +1,13 @@
 import "./App.css";
 import img from "./sample-image.png";
+import {
+  BsCloudUpload,
+  BsImage,
+  BsActivity,
+  BsCheckCircle,
+  BsExclamationTriangle,
+  BsGithub,
+} from "react-icons/bs";
 
 function App() {
   return (
@@ -23,7 +31,9 @@ function App() {
 
       <div className="cards" style={styles[".cards"]}>
         <div className="image-upload-card" style={styles[".image-upload-card"]}>
-          <button style={styles.button}>Upload X-Ray/Lung Scan</button>
+          <button style={styles.button}>
+            Upload X-Ray/Lung Scan <BsImage size={21} />
+          </button>
           <div className="img-container" style={styles.imageContainer}>
             {/* <img src={img} style={styles.image} /> */}
           </div>
@@ -31,19 +41,33 @@ function App() {
         </div>
         <div className="result-card" style={styles[".result-card"]}>
           <div className="prediction-container" style={styles.resultContainer}>
-            <h3 style={styles.h3}>Prediction:</h3>
+            <h3 style={styles.h3}>
+              Prediction <BsActivity size={28} /> :
+            </h3>
             <span className="prediction-result" style={styles.result}>
               Tuberculosis
             </span>
           </div>
           <div className="confidence-container" style={styles.resultContainer}>
-            <h3 style={styles.h3}>Confidence:</h3>
+            <h3 style={styles.h3}>
+              Confidence <BsCheckCircle size={24} /> :
+            </h3>
             <span className="confidence-result" style={styles.result}>
               98.0%
             </span>
           </div>
         </div>
       </div>
+
+      <footer style={styles.footer}>
+        <p style={styles.p}>
+          This project was built by Shelly Abramov, Barbara Freitas, Dinesh
+          Ramdeen, and Gabriel Dolan
+        </p>
+        <a href="https://github.com/bfreitas1098/AI-Tuberculosis-Lung-Disease-Detector">
+          <BsGithub size={28} color="#00d1ff" style={styles.github} />
+        </a>
+      </footer>
     </main>
   );
 }
@@ -104,6 +128,11 @@ const styles = {
     border: "none",
     padding: "1rem 1.5rem",
     borderRadius: 8,
+    width: "37rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItem: "center",
+    gap: "1.5rem",
   },
 
   ".result-card": {
@@ -144,5 +173,14 @@ const styles = {
 
   image: {
     width: "100%",
+  },
+
+  footer: {
+    borderTop: "2px solid var(--muted)",
+    padding: "4rem 0 5rem",
+  },
+
+  github: {
+    marginTop: "3rem",
   },
 };
