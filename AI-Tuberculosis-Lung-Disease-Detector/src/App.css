@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap");
 
+:root {
+  --primary: #00d1ff;
+  --secondary: #4da3ff;
+  --text: #e6edf3;
+  --bg: #0b0f14;
+  --muted: #8b9cb0;
+  --cards: #121821;
+}
+
 *,
 *::before,
 *::after {
@@ -11,13 +20,18 @@
   font-style: normal;
 }
 
+html,
 body {
-  background-color: #0b0f14;
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 5rem 0;
-  color: #e6edf3;
+  color: var(--text);
   text-align: center;
 }
 

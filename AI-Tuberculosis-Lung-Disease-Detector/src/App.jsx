@@ -1,4 +1,5 @@
 import "./App.css";
+import img from "./sample-image.png";
 
 function App() {
   return (
@@ -19,6 +20,30 @@ function App() {
           tuberculosis in the past globally.
         </p>
       </header>
+
+      <div className="cards" style={styles[".cards"]}>
+        <div className="image-upload-card" style={styles[".image-upload-card"]}>
+          <button style={styles.button}>Upload X-Ray/Lung Scan</button>
+          <div className="img-container" style={styles.imageContainer}>
+            {/* <img src={img} style={styles.image} /> */}
+          </div>
+          <button style={styles.button}>Detect</button>
+        </div>
+        <div className="result-card" style={styles[".result-card"]}>
+          <div className="prediction-container" style={styles.resultContainer}>
+            <h3 style={styles.h3}>Prediction:</h3>
+            <span className="prediction-result" style={styles.result}>
+              Tuberculosis
+            </span>
+          </div>
+          <div className="confidence-container" style={styles.resultContainer}>
+            <h3 style={styles.h3}>Confidence:</h3>
+            <span className="confidence-result" style={styles.result}>
+              98.0%
+            </span>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
@@ -34,7 +59,7 @@ const styles = {
   },
 
   h1: {
-    color: "#00D1FF",
+    color: "var(--primary)",
     fontSize: "5rem",
     fontWeight: 700,
   },
@@ -45,7 +70,79 @@ const styles = {
   },
 
   ".highlight": {
-    color: "#8B9CB0",
+    color: "var(--muted)",
     fontSize: "1.6rem",
+  },
+
+  ".cards": {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "10rem 0",
+    backgroundColor: "var(--cards)",
+    height: "60rem",
+  },
+
+  ".image-upload-card": {
+    border: "1px solid var(--muted)",
+    height: "100%",
+    padding: "2rem",
+    width: "50%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "3rem",
+  },
+
+  button: {
+    backgroundColor: "var(--secondary)",
+    color: "var(--bg)",
+    fontSize: "2rem",
+    fontWeight: 600,
+    // border: "1px solid var(--text)",
+    border: "none",
+    padding: "1rem 1.5rem",
+    borderRadius: 8,
+  },
+
+  ".result-card": {
+    border: "1px solid var(--muted)",
+    height: "100%",
+    padding: "2rem",
+    width: "50%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "10rem",
+  },
+
+  h3: {
+    fontSize: "3.5rem",
+    color: "var(--secondary)",
+  },
+
+  resultContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "2rem",
+  },
+
+  result: {
+    fontSize: "2.5rem",
+    // color: "var(--muted)",
+  },
+
+  imageContainer: {
+    border: "1px solid var(--muted)",
+    width: "80%",
+    height: "37rem",
+  },
+
+  image: {
+    width: "100%",
   },
 };
