@@ -1,13 +1,6 @@
 import "./App.css";
 import img from "./sample-image.png";
-import {
-  BsCloudUpload,
-  BsImage,
-  BsActivity,
-  BsCheckCircle,
-  BsExclamationTriangle,
-  BsGithub,
-} from "react-icons/bs";
+import { BsImage, BsActivity, BsCheckCircle, BsGithub } from "react-icons/bs";
 
 function App() {
   return (
@@ -35,7 +28,7 @@ function App() {
             Upload X-Ray/Lung Scan <BsImage size={21} />
           </button>
           <div className="img-container" style={styles.imageContainer}>
-            {/* <img src={img} style={styles.image} /> */}
+            <img src={img} style={styles.image} />
           </div>
           <button style={styles.mutedButton}>Detect</button>
         </div>
