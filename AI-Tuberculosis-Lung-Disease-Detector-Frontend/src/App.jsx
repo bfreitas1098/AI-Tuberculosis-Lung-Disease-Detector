@@ -28,7 +28,7 @@ function App() {
             Upload X-Ray/Lung Scan <BsImage size={21} />
           </button>
           <div className="img-container" style={styles.imageContainer}>
-            <img src={img} style={styles.image} />
+            {/* <img src={img} style={styles.image} /> */}
           </div>
           <button style={styles.mutedButton}>Detect</button>
         </div>
