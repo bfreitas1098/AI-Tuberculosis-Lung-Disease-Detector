@@ -1,8 +1,52 @@
 import "./App.css";
-import img from "./sample-image.png";
+import { useRef, useState } from "react";
 import { BsImage, BsActivity, BsCheckCircle, BsGithub } from "react-icons/bs";
 
 function App() {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const fileInputRef = useRef(null);
+
+  function handleImageChange(e) {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    setSelectedImage(file);
+    setPreview(URL.createObjectURL(file));
+    setResult(null);
+  }
+
+  async function handleDetect() {
+    if (!selectedImage) {
+      alert("Please upload an image first.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", selectedImage);
+
+    try {
+      setLoading(true);
+
+      const response = await fetch("http://localhost:8000/predict", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      setResult(data);
+    } catch (error) {
+      console.error("Prediction error:", error);
+      alert("Something went wrong while analyzing the image");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <main>
       <header style={styles.header}>
@@ -24,13 +68,21 @@ function App() {
 
       <div className="cards" style={styles[".cards"]}>
         <div className="image-upload-card" style={styles[".image-upload-card"]}>
-          <button style={styles.button}>
+          <input type="file" accept="image/*" ref={fileInputRef} onChange={handleImageChange} style={{ display: "none" }} />
+
+          <button style={styles.button} onClick={() => fileInputRef.current.click()}>
             Upload X-Ray/Lung Scan <BsImage size={21} />
           </button>
+
           <div className="img-container" style={styles.imageContainer}>
-            {/* <img src={img} style={styles.image} /> */}
+            {preview ? (
+              <img src={preview} alt="Uploaded scan" style={styles.image} />
+            ) : (
+              <p style={styles.placeholderText}>No image uploaded yet</p>
+            )}
           </div>
-          <button style={styles.mutedButton}>Detect</button>
+
+          <button style={{ ...styles.mutedButton, cursor: selectedImage && !loading ? "pointer" : "not-allowed", opacity: selectedImage && !loading ? 1 : 0.6, }} onClick={handleDetect} disabled={!selectedImage || loading}>{loading ? "Analyzing..." : "Detect"}</button>
         </div>
         <div className="result-card" style={styles[".result-card"]}>
           <div className="prediction-container" style={styles.resultContainer}>
@@ -38,7 +90,7 @@ function App() {
               Prediction <BsActivity size={28} /> :
             </h3>
             <span className="prediction-result" style={styles.result}>
-              Tuberculosis
+              {result ? result.prediction : "Waiting for scan"}
             </span>
           </div>
           <div className="confidence-container" style={styles.resultContainer}>
@@ -46,7 +98,7 @@ function App() {
               Confidence <BsCheckCircle size={24} /> :
             </h3>
             <span className="confidence-result" style={styles.result}>
-              98.0%
+              {result ? `${result.confidence}%` : "--"}
             </span>
           </div>
         </div>
@@ -181,10 +233,6 @@ const styles = {
     height: "37rem",
   },
 
-  image: {
-    width: "100%",
-  },
-
   footer: {
     borderTop: "2px solid var(--muted)",
     padding: "4rem 0 5rem",
@@ -193,4 +241,15 @@ const styles = {
   github: {
     marginTop: "3rem",
   },
+
+  placeholderText: {
+    fontSize: "1.6rem",
+    color: "var(--muted)",
+  },
+
+  image: {
+    width: "100%",
+    height: "100%",
+    objectFit: "contain",
+  }
 };

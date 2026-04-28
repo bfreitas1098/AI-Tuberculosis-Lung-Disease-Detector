@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+from tensorflow.keras.applications.resnet50 import preprocess_input
 import tensorflow as tf
 import numpy as np
 from PIL import Image
@@ -15,17 +16,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = tf.keras.models.load_model("tb_cnn_model_best.keras")
+model = tf.keras.models.load_model("tb_resnet_model_best.keras")
 
 THRESHOLD = 0.3
 
 def preprocess_image(contents):
-    image = Image.open(io.BytesIO(contents)).convert("L")
+    image = Image.open(io.BytesIO(contents)).convert("RGB")
     image = image.resize((224, 224))
 
-    image_array = np.array(image) / 255.0
-    image_array = np.expand_dims(image_array, axis=-1)
+    image_array = np.array(image)
     image_array = np.expand_dims(image_array, axis=0)
+    image_array = preprocess_input(image_array)
 
     return image_array
 
@@ -39,6 +40,7 @@ async def predict(image: UploadFile = File(...)):
     processed_image = preprocess_image(contents)
 
     probability = float(model.predict(processed_image)[0][0])
+    print("TB probability:", probability)
 
     if probability >= THRESHOLD:
         prediction = "Tuberculosis"
