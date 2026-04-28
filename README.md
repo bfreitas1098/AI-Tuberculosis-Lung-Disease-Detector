@@ -166,5 +166,5 @@ We addressed these using:
 
 ## 🎥 Presentation & Demo
 
-- 📺 Video Presentation: 
+- 📺 Video Presentation: https://docs.google.com/videos/d/1RmHA3k-J1RCnG9vuq9Icputsvz8YWvwSGK7TVWi-Jaw/play
 - 💻 Demo Instructions: Upload an X-ray image for prediction
