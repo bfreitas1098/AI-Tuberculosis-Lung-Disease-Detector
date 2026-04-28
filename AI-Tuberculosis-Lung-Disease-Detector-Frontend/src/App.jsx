@@ -82,7 +82,7 @@ function App() {
             )}
           </div>
 
-          <button style={{ ...styles.mutedButton, cursor: selectedImage && !loading ? "pointer" : "not-allowed", opacity: selectedImage && !loading ? 1 : 0.6, }} onClick={handleDetect} disabled={!selectedImage || loading}>{loading ? "Analyzing..." : "Detect"}</button>
+          <button style={{ ...(selectedImage ? styles.button : styles.mutedButton), cursor: selectedImage && !loading ? "pointer" : "not-allowed", opacity: selectedImage && !loading ? 1 : 0.6, }} onClick={handleDetect} disabled={!selectedImage || loading}>{loading ? "Analyzing..." : "Detect"}</button>
         </div>
         <div className="result-card" style={styles[".result-card"]}>
           <div className="prediction-container" style={styles.resultContainer}>
@@ -125,37 +125,43 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     gap: 15,
+    padding: "2rem 0",
   },
 
   h1: {
     color: "var(--primary)",
-    fontSize: "5rem",
+    fontSize: "clamp(2.8rem, 6vw, 5rem)",
     fontWeight: 700,
+    lineHeight: 1.1,
   },
 
   p: {
-    fontSize: "1.6rem",
+    fontSize: "clamp(1.2rem, 2vw, 1.6rem)",
     lineHeight: 1.35,
   },
 
   ".highlight": {
     color: "var(--muted)",
-    fontSize: "1.6rem",
+    fontSize: "clamp(1.2rem, 2vw, 1.6rem)",
   },
 
   ".cards": {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    margin: "10rem 0",
+    alignItems: "stretch",
+    flexWrap: "wrap",
+    margin: "clamp(4rem, 8vw, 10rem) 0",
     backgroundColor: "var(--cards)",
-    height: "60rem",
+    minHeight: "60rem",
+    height: "auto",
+    width: "100%",
   },
 
   ".image-upload-card": {
     border: "1px solid var(--muted)",
-    height: "100%",
-    padding: "2rem",
+    minHeight: "50rem",
+    padding: "clamp(1.5rem, 3vw, 2rem)",
+    flex: "1 1 35rem",
     width: "50%",
     display: "flex",
     flexDirection: "column",
@@ -167,16 +173,15 @@ const styles = {
   button: {
     backgroundColor: "var(--secondary)",
     color: "var(--bg)",
-    fontSize: "2rem",
+    fontSize: "clamp(1.4rem, 2vw, 2rem)",
     fontWeight: 600,
-    // border: "1px solid var(--text)",
     border: "none",
     padding: "1rem 1.5rem",
     borderRadius: 8,
-    width: "37rem",
+    width: "min(37rem, 100%)",
     display: "flex",
     justifyContent: "center",
-    alignItem: "center",
+    alignItems: "center",
     gap: "1.5rem",
     cursor: "pointer",
   },
@@ -184,34 +189,35 @@ const styles = {
   mutedButton: {
     backgroundColor: "var(--muted)",
     color: "var(--bg)",
-    fontSize: "2rem",
+    fontSize: "clamp(1.4rem, 2vw, 2rem)",
     fontWeight: 600,
-    // border: "1px solid var(--text)",
     border: "none",
     padding: "1rem 1.5rem",
     borderRadius: 8,
-    width: "37rem",
+    width: "min(37rem, 100%)",
     display: "flex",
     justifyContent: "center",
-    alignItem: "center",
+    alignItems: "center",
     gap: "1.5rem",
   },
 
   ".result-card": {
     border: "1px solid var(--muted)",
-    height: "100%",
-    padding: "2rem",
+    minHeight: "50rem",
+    padding: "clamp(1.5rem, 3vw, 2rem)",
+    flex: "1 1 35rem",
     width: "50%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap: "10rem",
+    gap: "clamp(4rem, 8vw, 10rem)",
   },
 
   h3: {
-    fontSize: "3.5rem",
+    fontSize: "clamp(2.2rem, 4vw, 3.5rem)",
     color: "var(--secondary)",
+    textAlign: "center",
   },
 
   resultContainer: {
@@ -220,22 +226,28 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     gap: "2rem",
+    textAlign: "center",
   },
 
   result: {
-    fontSize: "2.5rem",
-    // color: "var(--muted)",
+    fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
+    textAlign: "center",
   },
 
   imageContainer: {
     border: "1px solid var(--muted)",
-    width: "80%",
-    height: "37rem",
+    width: "min(100%, 45rem)",
+    height: "clamp(25rem, 45vw, 37rem)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden",
   },
 
   footer: {
     borderTop: "2px solid var(--muted)",
     padding: "4rem 0 5rem",
+    textAlign: "center",
   },
 
   github: {
@@ -243,13 +255,14 @@ const styles = {
   },
 
   placeholderText: {
-    fontSize: "1.6rem",
+    fontSize: "clamp(1.2rem, 2vw, 1.6rem)",
     color: "var(--muted)",
+    textAlign: "center",
   },
 
   image: {
     width: "100%",
     height: "100%",
     objectFit: "contain",
-  }
+  },
 };
