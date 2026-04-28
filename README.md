@@ -81,7 +81,7 @@ Our project follows this pipeline:
 
 ## 📈 Evaluation Metrics
 
-We evaluated model performance using:
+We evaluated the models performance using:
 
 - Accuracy
 - Precision
@@ -93,19 +93,51 @@ We evaluated model performance using:
 
 ## 📊 Results
 
-### Model Performance:
-- Accuracy: XX%
-- Precision: XX%
-- Recall: XX%
-- F1 Score: XX%
+### CNN Model Performance:
+- Accuracy: 72%
+- Precision: 66%
+- Recall: 91%
+- F1 Score: 76%
 
 ### Observations:
-- The model performed well on [mention strength]
-- Some misclassifications occurred in [mention weakness]
-- Challenges included [lighting, dataset imbalance, etc.]
+- The model performed well on recall
+- Some misclassifications occurred in precision
+- Challenges included lighting
 
 ### Visualizations:
-(Add charts/graphs/confusion matrix images here)
+<img width="638" height="552" alt="Screenshot 2026-04-28 at 12 59 49 PM" src="https://github.com/user-attachments/assets/163d7591-8eb4-4df6-b23e-94cffe2acf9b" />
+
+
+
+### MobileNetV2 Model Performance:
+- Accuracy: 74%
+- Precision: 69%
+- Recall: 88%
+- F1 Score: 77%
+
+### Observations:
+- The model performed well on recall
+- Some misclassifications occurred in precision
+- Challenges included coloring
+
+### Visualizations:
+<img width="654" height="586" alt="Screenshot 2026-04-28 at 1 01 16 PM" src="https://github.com/user-attachments/assets/37e472aa-326f-4c1d-9597-c05c24349489" />
+
+
+### Resnet50 Model Performance:
+- Accuracy: 75%
+- Precision: 70%
+- Recall: 90%
+- F1 Score: 79%
+
+### Observations:
+- The model performed well on recall
+- Some misclassifications occurred in precision
+- Challenges included coloring
+
+### Visualizations:
+<img width="626" height="580" alt="Screenshot 2026-04-28 at 1 05 23 PM" src="https://github.com/user-attachments/assets/576ee2dd-7e72-4c23-a2e4-b5f5f748834c" />
+
 
 ---
 
