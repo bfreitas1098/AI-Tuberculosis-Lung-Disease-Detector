@@ -16,7 +16,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = tf.keras.models.load_model("tb_resnet_model_best.keras")
+model = tf.keras.models.load_model(
+    "tb_resnet_model_best.keras",
+    compile=False
+)
 
 THRESHOLD = 0.3
 
