@@ -32,10 +32,13 @@ function App() {
     try {
       setLoading(true);
 
-      const response = await fetch("http://localhost:8000/predict", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://ai-tuberculosis-lung-disease-detector.onrender.com",
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
 
       const data = await response.json();
       setResult(data);
@@ -68,9 +71,18 @@ function App() {
 
       <div className="cards" style={styles[".cards"]}>
         <div className="image-upload-card" style={styles[".image-upload-card"]}>
-          <input type="file" accept="image/*" ref={fileInputRef} onChange={handleImageChange} style={{ display: "none" }} />
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handleImageChange}
+            style={{ display: "none" }}
+          />
 
-          <button style={styles.button} onClick={() => fileInputRef.current.click()}>
+          <button
+            style={styles.button}
+            onClick={() => fileInputRef.current.click()}
+          >
             Upload X-Ray/Lung Scan <BsImage size={21} />
           </button>
 
@@ -82,7 +94,17 @@ function App() {
             )}
           </div>
 
-          <button style={{ ...(selectedImage ? styles.button : styles.mutedButton), cursor: selectedImage && !loading ? "pointer" : "not-allowed", opacity: selectedImage && !loading ? 1 : 0.6, }} onClick={handleDetect} disabled={!selectedImage || loading}>{loading ? "Analyzing..." : "Detect"}</button>
+          <button
+            style={{
+              ...(selectedImage ? styles.button : styles.mutedButton),
+              cursor: selectedImage && !loading ? "pointer" : "not-allowed",
+              opacity: selectedImage && !loading ? 1 : 0.6,
+            }}
+            onClick={handleDetect}
+            disabled={!selectedImage || loading}
+          >
+            {loading ? "Analyzing..." : "Detect"}
+          </button>
         </div>
         <div className="result-card" style={styles[".result-card"]}>
           <div className="prediction-container" style={styles.resultContainer}>
