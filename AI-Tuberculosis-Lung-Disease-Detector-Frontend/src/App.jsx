@@ -33,7 +33,7 @@ function App() {
       setLoading(true);
 
       const response = await fetch(
-        "https://ai-tuberculosis-lung-disease-detector.onrender.com",
+        "https://ai-tuberculosis-lung-disease-detector.onrender.com/predict",
         {
           method: "POST",
           body: formData,
