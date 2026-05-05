@@ -12,7 +12,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://tuberculosislungdetector.netlify.app/",
+        "https://tuberculosislungdetector.netlify.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
